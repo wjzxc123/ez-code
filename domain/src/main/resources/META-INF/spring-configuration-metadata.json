@@ -1,0 +1,27 @@
+{"groups": [
+  {
+    "name": "spring.datasource",
+    "type": "java.lang.String"
+  }
+],"properties": [
+    {
+      "name": "spring.datasource.dbds.driver-class-name",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.dbds.driver-class-name."
+    },
+    {
+      "name": "spring.datasource.dbds.username",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.dbds.username."
+    },
+    {
+      "name": "spring.datasource.dbds.password",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.dbds.password."
+    },
+    {
+      "name": "spring.datasource.dbds.jdbc-url",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.dbds.jdbc-url."
+    }
+  ] }

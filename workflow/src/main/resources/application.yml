@@ -1,0 +1,27 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: workflow
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: admin
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/ez_code?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&
+      nullCatalogMeansCurrent=true
+  activiti:
+    database-schema-update: true
+    history-level: full
+    db-history-used: true
+
+logging:
+  level:
+    com:
+      licon: debug
+    org:
+      activiti:
+        engine:
+          impl:
+            persistence:
+              entity: debug
+  config: classpath:logback-spring.xml

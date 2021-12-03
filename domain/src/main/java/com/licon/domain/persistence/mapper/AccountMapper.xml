@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.licon.domain.persistence.mapper.AccountMapper">
+	<resultMap id="BASE" type="com.licon.domain.persistence.po.AccountDO">
+		<result column="USER_ID" property="userId"/>
+		<result column="ACCOUNT_ID" property="accountId"/>
+		<result column="ACCOUNT_NUMBER" property="accountNumber"/>
+		<result column="AVAILABLE" property="available"/>
+		<result column="DAILY_LIMIT" property="dailyLimit"/>
+		<result column="CURRENCY" property="currency"/>
+		<result column="VERSION" property="version"/>
+	</resultMap>
+
+	<select id="queryByUserId" resultMap="BASE" parameterType="java.lang.Long">
+		select
+			USER_ID,
+			ACCOUNT_ID,
+			ACCOUNT_NUMBER,
+			AVAILABLE,
+			DAILY_LIMIT,
+			CURRENCY,
+			VERSION
+		from account
+		where
+			USER_ID = #{userId}
+	</select>
+	<select id="queryByAccountId" resultMap="BASE" parameterType="java.lang.Long">
+		select
+			USER_ID,
+			ACCOUNT_ID,
+			ACCOUNT_NUMBER,
+			AVAILABLE,
+			DAILY_LIMIT,
+			CURRENCY,
+			VERSION
+		from account
+		where
+			ACCOUNT_ID = #{accountId}
+	</select>
+	<select id="queryByAccountNumber" resultMap="BASE" parameterType="java.lang.String">
+		select
+			USER_ID,
+			ACCOUNT_ID,
+			ACCOUNT_NUMBER,
+			AVAILABLE,
+			DAILY_LIMIT,
+			CURRENCY,
+			VERSION
+		from account
+		where
+			ACCOUNT_NUMBER = #{accountNumber}
+	</select>
+
+	<delete id="delete">
+		delete
+			from account
+		where USER_ID = #{userId}
+	</delete>
+
+	<select id="queryPaged" resultMap="BASE">
+		select
+			USER_ID,
+			ACCOUNT_ID,
+			ACCOUNT_NUMBER,
+			AVAILABLE,
+			DAILY_LIMIT,
+			CURRENCY,
+			VERSION
+		from account
+	</select>
+</mapper>
