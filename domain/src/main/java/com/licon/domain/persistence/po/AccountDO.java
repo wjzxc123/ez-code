@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
+import com.licon.domain.common.BaseField;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,7 +22,7 @@ import lombok.experimental.Accessors;
 @ToString
 @TableName("account")
 @Accessors(chain = true)
-public class AccountDO {
+public class AccountDO extends BaseField {
 	@TableId
 	private Long userId;
 	private Long accountId;
@@ -29,6 +30,4 @@ public class AccountDO {
 	private BigDecimal available;
 	private BigDecimal dailyLimit;
 	private String currency;
-	@Version
-	private Long version;
 }

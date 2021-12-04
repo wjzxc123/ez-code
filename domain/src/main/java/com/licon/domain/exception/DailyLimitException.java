@@ -6,7 +6,7 @@ package com.licon.domain.exception;
  * @author Licon
  * @date 2021/10/29 14:41
  */
-public class DailyLimitException extends Exception{
+public class DailyLimitException extends BusinessException{
 	public DailyLimitException(String message) {
 		super(message);
 	}

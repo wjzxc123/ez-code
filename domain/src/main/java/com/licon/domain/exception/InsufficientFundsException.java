@@ -6,7 +6,7 @@ package com.licon.domain.exception;
  * @author Licon
  * @date 2021/10/29 15:13
  */
-public class InsufficientFundsException extends Exception{
+public class InsufficientFundsException extends BusinessException{
 	public InsufficientFundsException(String message) {
 		super(message);
 	}

@@ -1,4 +1,4 @@
-package com.licon.domain.common;
+package com.licon.domain.config;
 
 
 import java.util.List;
@@ -10,6 +10,7 @@ import javax.validation.ConstraintViolationException;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.licon.domain.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.validation.BindException;
@@ -61,4 +62,14 @@ public class GlobalExceptionHandler {
 		});
 		return errorList;
 	}
+
+	@ExceptionHandler(value = BusinessException.class)
+	@ResponseBody
+	public Object controllerExceptionHandle(HttpServletRequest request, BusinessException e){
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("code","500");
+		jsonObject.put("message",e.getMessage());
+		return jsonObject;
+	}
 }
+

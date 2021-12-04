@@ -2,6 +2,7 @@ package com.licon.domain.domian.entity;
 
 import java.util.Currency;
 
+import com.licon.domain.common.BaseField;
 import com.licon.domain.domian.repository.Aggregate;
 import com.licon.domain.exception.DailyLimitException;
 import com.licon.domain.exception.InsufficientFundsException;
@@ -24,7 +25,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Account implements Aggregate<UserId> {
+public class Account extends BaseField implements Aggregate<UserId> {
 	private UserId userId;
 	private AccountId accountId;
 	private AccountNumber accountNumber;
@@ -42,7 +43,7 @@ public class Account implements Aggregate<UserId> {
 	 */
 	public void deposit(Money money)throws InvalidCurrencyException, MoneyAmountNotNullException {
 		if (!this.currency.equals(money.getCurrency())){
-			throw new InvalidCurrencyException();
+			throw new InvalidCurrencyException("币种不匹配");
 		}
 		this.available = this.available.add(money);
 	}
@@ -57,7 +58,7 @@ public class Account implements Aggregate<UserId> {
 	 */
 	public void fetch(Money money) throws DailyLimitException,InvalidCurrencyException, InsufficientFundsException {
 		if (!this.currency.equals(money.getCurrency())){
-			throw new InvalidCurrencyException();
+			throw new InvalidCurrencyException("币种不匹配");
 		}
 		if (available.compareTo(money)<0){
 			throw new InsufficientFundsException("账户金额不足");
