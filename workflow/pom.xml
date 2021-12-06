@@ -17,6 +17,7 @@
 
 	<properties>
 		<activiti.version>7.1.0.M6</activiti.version>
+		<security.version>${project.parent.version}</security.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter -->
@@ -28,20 +29,20 @@
 		<dependency>
 			<groupId>com.lut</groupId>
 			<artifactId>security</artifactId>
-			<version>${project.parent.version}</version>
+			<version>${security.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 	<build>
-		<resources>
-			<resource>
-				<filtering>false</filtering>
-				<directory>${basedir}/src/main/resources</directory>
-				<includes>
-					<include>*.*</include>L
-				</includes>
-			</resource>
-		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<skipTests>true</skipTests>  <!--默认关掉单元测试 -->
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
