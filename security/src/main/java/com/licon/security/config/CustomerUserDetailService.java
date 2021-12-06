@@ -1,9 +1,10 @@
-package com.lut.workflow.config;
+package com.licon.security.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Component;
  * @author Licon
  * @date 2021/12/2 14:57
  */
-@Component
+@Configuration
 public class CustomerUserDetailService implements UserDetailsService {
 
 	@Override

@@ -1,8 +1,8 @@
-package com.lut.workflow.config;
+package com.licon.security.config;
 
 import java.util.HashSet;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +19,7 @@ import org.springframework.stereotype.Component;
  * @author Licon
  * @date 2021/12/2 15:03
  */
-@Component
+@Configuration
 public class CustomerAuthenticationProvider implements AuthenticationProvider {
 	final CustomerUserDetailService customerUserDetailService;
 

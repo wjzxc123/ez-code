@@ -6,12 +6,10 @@
 		<groupId>com.lut</groupId>
 		<artifactId>ez-code</artifactId>
 		<version>0.0.1.L1</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<artifactId>security</artifactId>
 	<version>0.0.1.L1</version>
-	<packaging>jar</packaging>
 	<name>${project.artifactId}</name>
 	<description>security</description>
 

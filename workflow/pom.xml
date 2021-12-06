@@ -6,7 +6,7 @@
 		<groupId>com.lut</groupId>
 		<artifactId>ez-code</artifactId>
 		<version>0.0.1.L1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<groupId>com.lut</groupId>
@@ -32,6 +32,15 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>*.*</include>L
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

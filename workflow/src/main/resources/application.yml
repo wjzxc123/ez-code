@@ -2,13 +2,14 @@ server:
   port: 8081
 spring:
   profiles:
-    active: pro
+    active: dev
   application:
     name: workflow
   activiti:
     database-schema-update: true
     history-level: full
     db-history-used: true
+    async-executor-activate: false
 logging:
   level:
     com:

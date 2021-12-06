@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.licon.security.config.CustomerAuthenticationProvider,\
+com.licon.security.config.CustomerUserDetailService,\
+com.licon.security.config.PasswordConfig,\
+com.licon.security.config.SecurityConfig
