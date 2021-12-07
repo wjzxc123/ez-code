@@ -70,7 +70,7 @@ public class Account extends BaseField implements Aggregate<UserId> {
 	}
 
 	@Override
-	public UserId getId() {
+	public UserId getBId() {
 		return this.userId;
 	}
 }

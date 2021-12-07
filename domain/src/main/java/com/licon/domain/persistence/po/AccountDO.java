@@ -2,6 +2,7 @@ package com.licon.domain.persistence.po;
 
 import java.math.BigDecimal;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
@@ -23,7 +24,6 @@ import lombok.experimental.Accessors;
 @TableName("account")
 @Accessors(chain = true)
 public class AccountDO extends BaseField {
-	@TableId
 	private Long userId;
 	private Long accountId;
 	private String accountNumber;

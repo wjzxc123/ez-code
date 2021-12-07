@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.licon.domain.persistence.mapper.AccountMapper">
 	<resultMap id="BASE" type="com.licon.domain.persistence.po.AccountDO">
+		<id column="ID" property="id"/>
 		<result column="USER_ID" property="userId"/>
 		<result column="ACCOUNT_ID" property="accountId"/>
 		<result column="ACCOUNT_NUMBER" property="accountNumber"/>
@@ -9,43 +10,54 @@
 		<result column="DAILY_LIMIT" property="dailyLimit"/>
 		<result column="CURRENCY" property="currency"/>
 		<result column="VERSION" property="version"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="UPDATE_TIME" property="updateTime"/>
 	</resultMap>
 
 	<select id="queryByUserId" resultMap="BASE" parameterType="java.lang.Long">
 		select
+			ID,
 			USER_ID,
 			ACCOUNT_ID,
 			ACCOUNT_NUMBER,
 			AVAILABLE,
 			DAILY_LIMIT,
 			CURRENCY,
-			VERSION
+			VERSION,
+			CREATE_TIME,
+			UPDATE_TIME
 		from account
 		where
 			USER_ID = #{userId}
 	</select>
 	<select id="queryByAccountId" resultMap="BASE" parameterType="java.lang.Long">
 		select
+			ID,
 			USER_ID,
 			ACCOUNT_ID,
 			ACCOUNT_NUMBER,
 			AVAILABLE,
 			DAILY_LIMIT,
 			CURRENCY,
-			VERSION
+			VERSION,
+			CREATE_TIME,
+			UPDATE_TIME
 		from account
 		where
 			ACCOUNT_ID = #{accountId}
 	</select>
 	<select id="queryByAccountNumber" resultMap="BASE" parameterType="java.lang.String">
 		select
+			ID,
 			USER_ID,
 			ACCOUNT_ID,
 			ACCOUNT_NUMBER,
 			AVAILABLE,
 			DAILY_LIMIT,
 			CURRENCY,
-			VERSION
+			VERSION,
+			CREATE_TIME,
+			UPDATE_TIME
 		from account
 		where
 			ACCOUNT_NUMBER = #{accountNumber}
@@ -59,13 +71,16 @@
 
 	<select id="queryPaged" resultMap="BASE">
 		select
+			ID,
 			USER_ID,
 			ACCOUNT_ID,
 			ACCOUNT_NUMBER,
 			AVAILABLE,
 			DAILY_LIMIT,
 			CURRENCY,
-			VERSION
+			VERSION,
+			CREATE_TIME,
+			UPDATE_TIME
 		from account
 	</select>
 </mapper>

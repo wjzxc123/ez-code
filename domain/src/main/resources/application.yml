@@ -8,7 +8,7 @@ spring:
       primary: write
       strict: false
   profiles:
-    active: dev
+    active: pro
 logging:
   level:
     com:
@@ -16,6 +16,17 @@ logging:
         domain: debug
   config: classpath:logback-spring.xml
 
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
 knife4j:
   enable: true
+
+decorator:
+  datasource:
+    enabled: false
+
 

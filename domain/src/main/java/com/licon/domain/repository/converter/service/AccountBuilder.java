@@ -26,7 +26,6 @@ public interface AccountBuilder {
 	 * @author Licon
 	 * @date 2021/11/15 16:08
 	 */
-
 	@Mapping(target = "userId.userId",source = "userId")
 	@Mapping(target = "accountId.accountId",source = "accountId")
 	@Mapping(target = "accountNumber.accountNumber",source = "accountNumber")
@@ -35,6 +34,8 @@ public interface AccountBuilder {
 	@Mapping(target = "dailyLimit.amount",source = "dailyLimit")
 	@Mapping(target = "dailyLimit.currency",source = "currency")
 	@Mapping(target = "currency",source = "currency")
+	@Mapping(target = "createTime",source = "createTime")
+	@Mapping(target = "updateTime",source = "updateTime")
 	Account toAccount(AccountDO accountDo) throws RuntimeException;
 
 	/**
