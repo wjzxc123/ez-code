@@ -8,11 +8,14 @@ spring:
       primary: write
       strict: false
   profiles:
-    active: pro
+    active: dev
 logging:
   level:
     com:
       licon:
         domain: debug
   config: classpath:logback-spring.xml
+
+knife4j:
+  enable: true
 

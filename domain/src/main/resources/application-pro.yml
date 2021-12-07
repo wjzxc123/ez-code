@@ -14,3 +14,5 @@ spring:
           username: LJ
           password: Qwe#1234
           url: jdbc:mysql://121.89.203.197:3306/ez_code?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false
+swagger:
+  enable: false

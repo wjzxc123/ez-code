@@ -2,6 +2,9 @@
   {
     "name": "spring.datasource",
     "type": "java.lang.String"
+  },{
+    "name": "swagger",
+    "type": "java.lang.String"
   }
 ],"properties": [
     {
@@ -23,5 +26,24 @@
       "name": "spring.datasource.dbds.jdbc-url",
       "type": "java.lang.String",
       "description": "Description for spring.datasource.dbds.jdbc-url."
+    },
+    {
+      "name": "swagger.enable",
+      "type": "java.lang.Boolean",
+      "description": "Description for swagger.enable."
     }
-  ] }
+  ],"hints": [
+    {
+      "name": "swagger.enable",
+      "values": [
+        {
+          "value": true,
+          "description": "on swagger."
+        },
+        {
+          "value": false,
+          "description": "off swagger."
+        }
+      ]
+    }
+]}

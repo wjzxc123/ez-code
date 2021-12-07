@@ -17,6 +17,7 @@
 	<properties>
 		<mybatis-plus.version>3.4.3.4</mybatis-plus.version>
 		<dynamic.version>3.4.1</dynamic.version>
+		<keife4j.version>3.0.3</keife4j.version>
 	</properties>
 
 	<dependencies>
@@ -29,6 +30,12 @@
 			<groupId>com.baomidou</groupId>
 			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
 			<version>${dynamic.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>knife4j-spring-boot-starter</artifactId>
+			<version>${keife4j.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
