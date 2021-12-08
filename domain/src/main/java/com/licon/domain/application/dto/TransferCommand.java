@@ -27,7 +27,7 @@ public class TransferCommand extends CommandBase {
 	@NotNull(message = "用户id不能为空",groups = TransferGroup.class)
 	Long userId;
 
-	@ApiModelProperty(value = "对方账户",example = "123456",dataType = "String",position = 1,required = true)
+	@ApiModelProperty(value = "对方账户",example = "1234567",dataType = "String",position = 1,required = true)
 	@NotEmpty(message = "对方账户不能为空",groups = TransferGroup.class)
 	@NotNull(message = "对方账户不能为空",groups = UndoGroup.class)
 	String accountNumber;

@@ -48,7 +48,7 @@ public class TransferController {
 	@ApiOperation(value = "根据用户id和账号获取用户",notes = "get(usrId,accountNumber)",httpMethod = "GET",response = ResultData.class)
 	@ApiOperationSupport(author = "Licon")
 	@GetMapping("/account/all")
-	public ResultData<Boolean>  getAccount(@RequestBody QueryAccount queryAccount)throws Exception{
+	public ResultData<Boolean>  getAccount(QueryAccount queryAccount)throws Exception{
 		List<Account> accounts = accountService.queryAllAccount(queryAccount);
 		System.out.println(accounts);
 		return ResultData.success();
