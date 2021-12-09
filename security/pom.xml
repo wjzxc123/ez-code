@@ -31,6 +31,7 @@
 					<include>**/*.yml</include>
 					<include>**/*.properties</include>
 					<include>**/*.factories</include>
+					<include>**/static/*</include>
 				</includes>
 			</resource>
 		</resources>

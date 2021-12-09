@@ -1,0 +1,12 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: admin
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/ez_code?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&
+      nullCatalogMeansCurrent=true
+  web:
+    resources:
+      static-locations: classpath:/static/

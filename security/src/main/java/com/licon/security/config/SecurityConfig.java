@@ -7,6 +7,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Describe:
@@ -30,16 +38,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring()
-				.antMatchers("/resources/**","/api/*");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/api/**")
-				.permitAll().anyRequest()
-				.hasAnyAuthority("ROLE_ADMIN").and()
-				.formLogin()
-				.permitAll();
+
+		http.formLogin()
+				.loginPage("/login.html")
+				.usernameParameter("uname")
+				.passwordParameter("pwd")
+				.loginProcessingUrl("/login")
+				//.successForwardUrl("/main")
+				.successHandler((request, response, authentication) -> {
+					System.out.println(authentication.getPrincipal());
+					System.out.println(authentication.getAuthorities());
+					response.sendRedirect("http://www.baidu.com");
+				})
+				//.failureForwardUrl("/toError")
+				.failureHandler((request, response, exception) -> {
+					System.out.println(exception.getMessage());
+					response.sendRedirect("/error.html");
+				});
+
+
+		http.authorizeRequests().antMatchers("/api/**","/login.html","/error.html").permitAll()
+				.anyRequest()
+				.hasAnyAuthority("ROLE_ADMIN");
+
+		http.csrf().disable();
 	}
 }
