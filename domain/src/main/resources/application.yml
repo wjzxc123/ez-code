@@ -7,8 +7,12 @@ spring:
         connection-test-query: select 1
       primary: write
       strict: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   profiles:
-    active: pro
+    active: dev
+
 logging:
   level:
     com:
@@ -28,5 +32,11 @@ knife4j:
 decorator:
   datasource:
     enabled: false
+
+pagehelper:
+  params: pageNum=page;pageSize=pageSize;
+  helper-dialect: mysql
+  auto-dialect: true
+  supportMethodsArguments: true
 
 

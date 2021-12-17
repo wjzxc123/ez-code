@@ -10,7 +10,7 @@ public class SecurityController {
 
     @RequestMapping("/main")
     //@Secured("ROLE_ADMINS")//判断是否具有该角色
-    @PreAuthorize("hasRole('ROLE_ADMIN')")//判断是否有该权限，可以以ROLE_开头
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")//判断是否有该权限，可以以ROLE_开头
     public String toMain(){
         return "redirect:main.html";
     }

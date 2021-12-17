@@ -3,7 +3,14 @@ package com.licon.security.config;
 import com.licon.security.config.CustomerAuthenticationProvider;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
+import org.springframework.security.access.vote.AffirmativeBased;
+import org.springframework.security.access.vote.ConsensusBased;
+import org.springframework.security.access.vote.RoleHierarchyVoter;
+import org.springframework.security.access.vote.UnanimousBased;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -13,15 +20,21 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.util.Assert;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 
 /**
  * Describe:
@@ -34,9 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	public final CustomerAuthenticationProvider customerAuthenticationProvider;
 	public final CustomerUserDetailService customerUserDetailService;
-	public SecurityConfig(CustomerAuthenticationProvider customerAuthenticationProvider, CustomerUserDetailService customerUserDetailService) {
+	public final DataSource dataSource;
+	public SecurityConfig(CustomerAuthenticationProvider customerAuthenticationProvider,
+			CustomerUserDetailService customerUserDetailService, DataSource dataSource) {
 		this.customerAuthenticationProvider = customerAuthenticationProvider;
 		this.customerUserDetailService = customerUserDetailService;
+		this.dataSource = dataSource;
 	}
 
 	@Override
@@ -86,11 +102,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/api/**","/login.html","/error.html")
                 //.permitAll()
                 .access("permitAll()")
-		        .anyRequest().authenticated();
+		        .anyRequest().authenticated()
+				.withObjectPostProcessor(filterSecurityInterceptorObjectPostProcessor());
                 //.anyRequest().hasIpAddress("127.0.0.1");IP限制
 				//.anyRequest().hasAnyAuthority("ROLE_ADMINS");
                 //.anyRequest().access("hasAnyAuthority('ROLE_ADMIN')");
-				//自定义授权
+				//自定义授权 不能设置投票策略
 				//.anyRequest().access("@customerURLSecurity.hasPermission(request,authentication)");
 
 		http.logout()
@@ -103,11 +120,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					writer.close();
 				});
 
-		//http.csrf().disable();
+		http.csrf().disable();
+	}
+
+	ObjectPostProcessor<FilterSecurityInterceptor> filterSecurityInterceptorObjectPostProcessor(){
+		return new ObjectPostProcessor<FilterSecurityInterceptor>() {
+			@Override
+			public <O extends FilterSecurityInterceptor> O postProcess(O object) {
+				object.setAccessDecisionManager(obtainAccessDecisionManager());
+				//object.setSecurityMetadataSource(metadataSource);
+				return object;
+			}
+		};
+	}
+
+	AccessDecisionManager obtainAccessDecisionManager(){
+		return new AffirmativeBased(Collections.singletonList(new RoleHierarchyVoter(new RoleHierarchyImpl())));
 	}
 
 	@Bean
 	public PersistentTokenRepository persistentTokenRepository(){
-		return new InMemoryTokenRepositoryImpl();
+		JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+		jdbcTokenRepository.setDataSource(dataSource);
+		//jdbcTokenRepository.setCreateTableOnStartup(true);
+		return jdbcTokenRepository;
+		/*return new InMemoryTokenRepositoryImpl();*/
 	}
 }

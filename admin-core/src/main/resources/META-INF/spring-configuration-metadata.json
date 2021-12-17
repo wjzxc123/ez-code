@@ -1,0 +1,55 @@
+{"groups": [
+  {
+    "name": "spring.datasource",
+    "type": "java.lang.String"
+  },{
+    "name": "swagger",
+    "type": "java.lang.String"
+  },{
+    "name": "ez-code.admin",
+    "type": "com.lut.admin.core.config.AdminConfig"
+  }
+],"properties": [
+    {
+      "name": "swagger.enable",
+      "type": "java.lang.Boolean",
+      "description": "Description for swagger.enable."
+    },
+    {
+      "name": "ez-code.admin.datasource",
+      "sourceType": "com.lut.admin.core.config.AdminConfig",
+      "type": "java.util.Map<java.lang.String,com.lut.admin.core.config.DataSourceConfig>"
+    },
+    {
+      "name": "ez-code.admin.pagehelper",
+      "sourceType": "com.lut.admin.core.config.AdminConfig",
+      "type": "com.lut.admin.core.config.PageHelperConfig"
+    }
+  ],"hints": [
+    {
+      "name": "swagger.enable",
+      "values": [
+        {
+          "value": true,
+          "description": "on swagger."
+        },
+        {
+          "value": false,
+          "description": "off swagger."
+        }
+      ]
+    },
+    {
+      "name": "ez-code.admin.datasource.driver-class-name",
+      "values": [
+        {
+          "value": "com.mysql.cj.jdbc.Driver",
+          "description": "on swagger."
+        },
+        {
+          "value": "com.p6spy.engine.spy.P6SpyDriver",
+          "description": "off swagger."
+        }
+      ]
+    }
+]}

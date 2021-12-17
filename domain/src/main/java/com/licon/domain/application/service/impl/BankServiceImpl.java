@@ -5,7 +5,6 @@ import javax.validation.Valid;
 
 import com.licon.domain.application.dto.TransferCommand;
 import com.licon.domain.application.service.BankService;
-import com.licon.domain.common.ResultData;
 import com.licon.domain.common.group.TransferGroup;
 import com.licon.domain.domian.entity.Account;
 import com.licon.domain.domian.repository.AccountRepository;
@@ -15,6 +14,7 @@ import com.licon.domain.types.AccountNumber;
 import com.licon.domain.types.ExchangeRate;
 import com.licon.domain.types.Money;
 import com.licon.domain.types.UserId;
+import com.lut.admin.core.common.ResultData;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

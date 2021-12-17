@@ -1,12 +1,8 @@
 package com.licon.domain.persistence.po;
 
 import java.math.BigDecimal;
-
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.Version;
-import com.licon.domain.common.BaseField;
+import com.lut.admin.core.common.BaseField;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

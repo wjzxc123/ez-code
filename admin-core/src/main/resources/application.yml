@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: admin-core
+ez-code:
+  admin:
+    datasource:
+      write:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://121.89.203.197:3306/ez_code?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false
+        username: root
+        password: root
+        pool-type: hikari
+      read:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://121.89.203.197:3306/ez_code?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false
+        username: root
+        password: root
+        pool-type: hikari
+    pagehelper:
+      params: pageNum=page;pageSize=pageSize;
+      helper-dialect: mysql
+      auto-dialect: true
+      supportMethodsArguments: true
+
+
+

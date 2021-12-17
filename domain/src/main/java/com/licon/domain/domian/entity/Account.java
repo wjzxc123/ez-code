@@ -2,8 +2,6 @@ package com.licon.domain.domian.entity;
 
 import java.util.Currency;
 
-import com.licon.domain.common.BaseField;
-import com.licon.domain.domian.repository.Aggregate;
 import com.licon.domain.exception.DailyLimitException;
 import com.licon.domain.exception.InsufficientFundsException;
 import com.licon.domain.exception.InvalidCurrencyException;
@@ -12,6 +10,8 @@ import com.licon.domain.types.AccountId;
 import com.licon.domain.types.AccountNumber;
 import com.licon.domain.types.Money;
 import com.licon.domain.types.UserId;
+import com.lut.admin.core.common.BaseField;
+import com.lut.admin.core.domain.repository.Aggregate;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

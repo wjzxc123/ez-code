@@ -8,15 +8,15 @@ import javax.validation.constraints.NotNull;
 import com.licon.domain.domian.ceq.QueryAccount;
 import com.licon.domain.domian.entity.Account;
 import com.licon.domain.domian.repository.AccountRepository;
-import com.licon.domain.domian.repository.Aggregate;
-import com.licon.domain.exception.AttachException;
-import com.licon.domain.exception.DetachException;
 import com.licon.domain.persistence.mapper.AccountMapper;
 import com.licon.domain.persistence.po.AccountDO;
 import com.licon.domain.repository.converter.service.AccountBuilder;
 import com.licon.domain.types.AccountId;
 import com.licon.domain.types.AccountNumber;
 import com.licon.domain.types.UserId;
+import com.lut.admin.core.domain.repository.Aggregate;
+import com.lut.admin.core.exception.AttachException;
+import com.lut.admin.core.exception.DetachException;
 
 import org.springframework.stereotype.Repository;
 

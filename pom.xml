@@ -28,6 +28,7 @@
 		<module>domain</module>
 		<module>workflow</module>
 		<module>security</module>
+		<module>admin-core</module>
 	</modules>
 
 

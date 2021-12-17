@@ -7,16 +7,15 @@ import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.licon.domain.application.dto.TransferCommand;
 import com.licon.domain.application.service.AccountService;
 import com.licon.domain.application.service.BankService;
-import com.licon.domain.common.ResultData;
 import com.licon.domain.domian.ceq.QueryAccount;
 import com.licon.domain.domian.entity.Account;
+import com.lut.admin.core.common.ResultData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
