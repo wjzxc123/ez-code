@@ -1,12 +1,45 @@
-server:
-  port: 8082
 spring:
+  application:
+    name: admin-core
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: admin
-    password: root
-    url: jdbc:mysql://127.0.0.1:3306/ez_code?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&
-      nullCatalogMeansCurrent=true
+    dynamic:
+      hikari:
+        connection-test-query: select 1
+      primary: write
+      strict: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  profiles:
+    active: dev
   web:
     resources:
       static-locations: classpath:/static/
+
+logging:
+  level:
+    com:
+      licon:
+        domain: debug
+  config: classpath:logback-spring.xml
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+knife4j:
+  enable: true
+
+decorator:
+  datasource:
+    enabled: false
+
+pagehelper:
+  params: pageNum=page;pageSize=pageSize;
+  helper-dialect: mysql
+  auto-dialect: true
+  supportMethodsArguments: true
+
+

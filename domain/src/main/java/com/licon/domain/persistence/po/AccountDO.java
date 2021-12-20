@@ -1,6 +1,8 @@
 package com.licon.domain.persistence.po;
 
 import java.math.BigDecimal;
+
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.lut.admin.core.common.BaseField;
 import lombok.Getter;
@@ -26,4 +28,6 @@ public class AccountDO extends BaseField {
 	private BigDecimal available;
 	private BigDecimal dailyLimit;
 	private String currency;
+	@TableLogic
+	private Integer deleted;
 }

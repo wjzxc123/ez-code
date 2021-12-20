@@ -2,6 +2,7 @@ package com.licon.domain.domian.entity;
 
 import java.util.Currency;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.licon.domain.exception.DailyLimitException;
 import com.licon.domain.exception.InsufficientFundsException;
 import com.licon.domain.exception.InvalidCurrencyException;
@@ -32,6 +33,8 @@ public class Account extends BaseField implements Aggregate<UserId> {
 	private Money available;
 	private Money dailyLimit;
 	private Currency currency;
+	@TableLogic
+	private Integer deleted;
 
 	/***
 	 * 存入

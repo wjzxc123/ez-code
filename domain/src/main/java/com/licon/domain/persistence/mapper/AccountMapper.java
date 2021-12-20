@@ -3,9 +3,9 @@ package com.licon.domain.persistence.mapper;
 import java.util.List;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.licon.domain.domian.ceq.QueryAccount;
 import com.licon.domain.persistence.po.AccountDO;
+import com.lut.admin.core.mybatis.ExtensionMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 
@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 @DS("read")
-public interface AccountMapper extends BaseMapper<AccountDO> {
+public interface AccountMapper extends ExtensionMapper<AccountDO> {
 
 	/***
 	 *分页查询账户

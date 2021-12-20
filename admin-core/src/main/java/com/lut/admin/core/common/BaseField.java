@@ -12,6 +12,12 @@ import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Describe:
+ *
+ * @author Licon
+ * @date 2021/12/04 10:09
+ */
 @Getter
 @Setter
 public class BaseField {
@@ -27,6 +33,9 @@ public class BaseField {
     @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
-    @TableLogic
-    private Integer deleted;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private String createBy;
+
+    @TableField(fill = FieldFill.UPDATE)
+    private String updateBy;
 }

@@ -13,11 +13,20 @@
 	<name>${project.artifactId}</name>
 	<description>security</description>
 
+	<properties>
+		<admin-core.version>0.0.1.L1</admin-core.version>
+	</properties>
+	
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.lut</groupId>
+			<artifactId>admin-core</artifactId>
+			<version>${admin-core.version}</version>
 		</dependency>
 	</dependencies>
 
