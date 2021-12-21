@@ -1,7 +1,7 @@
-package com.lut.admin.core.mapper;
+package com.lut.admin.core.sys.mapper;
 
 import com.lut.admin.core.mybatis.ExtensionMapper;
-import com.lut.admin.core.po.Resource;
+import com.lut.admin.core.sys.po.Resource;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

@@ -20,6 +20,7 @@
 		<dynamic.version>3.4.1</dynamic.version>
 		<keife4j.version>3.0.3</keife4j.version>
 		<p6spy.version>1.7.1</p6spy.version>
+		<generator.version>3.5.1</generator.version>
 	</properties>
 
 	<dependencies>
@@ -43,6 +44,12 @@
 			<groupId>com.github.gavlyukovskiy</groupId>
 			<artifactId>p6spy-spring-boot-starter</artifactId>
 			<version>${p6spy.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-generator</artifactId>
+			<version>${generator.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

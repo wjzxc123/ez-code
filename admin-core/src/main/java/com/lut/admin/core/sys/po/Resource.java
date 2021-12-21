@@ -1,9 +1,7 @@
-package com.lut.admin.core.po;
+package com.lut.admin.core.sys.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.lut.admin.core.common.BaseField;
-import com.lut.admin.core.domain.repository.Aggregate;
-import com.lut.admin.core.type.ID;
 import lombok.Data;
 
 /**
@@ -15,7 +13,6 @@ import lombok.Data;
 @Data
 @TableName("sys_resource")
 public class Resource extends BaseField{
-	private Long id;
 
 	private String resourceId;
 

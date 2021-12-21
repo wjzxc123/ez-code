@@ -1,7 +1,7 @@
 package com.lut.admin.core;
 
-import com.lut.admin.core.po.Resource;
-import com.lut.admin.core.repository.ResourceRepository;
+import com.lut.admin.core.sys.po.Resource;
+import com.lut.admin.core.sys.repository.ResourceRepository;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;

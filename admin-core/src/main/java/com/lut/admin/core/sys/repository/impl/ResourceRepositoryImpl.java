@@ -1,13 +1,11 @@
-package com.lut.admin.core.repository.impl;
+package com.lut.admin.core.sys.repository.impl;
 
 import java.util.List;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.lut.admin.core.mapper.ResourceMapper;
-import com.lut.admin.core.po.Resource;
-import com.lut.admin.core.repository.ResourceRepository;
-
-import org.springframework.stereotype.Service;
+import com.lut.admin.core.sys.mapper.ResourceMapper;
+import com.lut.admin.core.sys.po.Resource;
+import com.lut.admin.core.sys.repository.ResourceRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * Describe:
@@ -15,8 +13,9 @@ import org.springframework.stereotype.Service;
  * @author Licon
  * @date 2021/12/20 13:34
  */
-@Service
+@Repository
 public class ResourceRepositoryImpl implements ResourceRepository {
+
 	final ResourceMapper resourceMapper;
 
 	public ResourceRepositoryImpl(ResourceMapper resourceMapper) {
@@ -36,5 +35,10 @@ public class ResourceRepositoryImpl implements ResourceRepository {
 	@Override
 	public Resource findInResourceId(String resourceId) throws Exception {
 		return null;
+	}
+
+	@Override
+	public boolean save(Resource resource) throws Exception {
+		return false;
 	}
 }

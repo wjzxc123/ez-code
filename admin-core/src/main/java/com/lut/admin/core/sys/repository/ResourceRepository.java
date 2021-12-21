@@ -1,8 +1,8 @@
-package com.lut.admin.core.repository;
+package com.lut.admin.core.sys.repository;
 
 import java.util.List;
 
-import com.lut.admin.core.po.Resource;
+import com.lut.admin.core.sys.po.Resource;
 
 /**
  * Describe:
@@ -41,4 +41,14 @@ public interface ResourceRepository{
 	 * @date 2021/12/20 13:34
 	 */
 	Resource findInResourceId(String resourceId) throws Exception;
+
+	/***
+	 * 保存资源
+	 * @param resource
+	 * @return {@link boolean}
+	 * @throws Exception
+	 * @author Licon
+	 * @date 2021/12/21 9:11
+	 */
+	boolean save(Resource resource) throws Exception;
 }

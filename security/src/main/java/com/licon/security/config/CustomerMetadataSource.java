@@ -4,7 +4,8 @@ import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.lut.admin.core.mapper.ResourceMapper;
+
+import com.lut.admin.core.sys.repository.ResourceRepository;
 
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.FilterInvocation;
@@ -19,10 +20,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CustomerMetadataSource implements FilterInvocationSecurityMetadataSource {
-	final ResourceMapper resourceMapper;
+	final ResourceRepository resourceRepository;
 
-	public CustomerMetadataSource(ResourceMapper resourceMapper) {
-		this.resourceMapper = resourceMapper;
+	public CustomerMetadataSource(ResourceRepository resourceRepository) {
+		this.resourceRepository = resourceRepository;
 	}
 
 	@Override
