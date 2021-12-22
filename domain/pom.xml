@@ -20,6 +20,7 @@
 		<keife4j.version>3.0.3</keife4j.version>
 		<p6spy.version>1.7.1</p6spy.version>
 		<admin-core.version>0.0.1.L1</admin-core.version>
+		<security.version>0.0.1.L1</security.version>
 	</properties>
 
 	<dependencies>
@@ -27,6 +28,11 @@
 			<groupId>com.lut</groupId>
 			<artifactId>admin-core</artifactId>
 			<version>${admin-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lut</groupId>
+			<artifactId>security</artifactId>
+			<version>${security.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

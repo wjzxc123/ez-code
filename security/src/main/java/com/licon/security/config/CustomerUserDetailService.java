@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
  * @author Licon
  * @date 2021/12/2 14:57
  */
-@Component
+//@Component
 public class CustomerUserDetailService implements UserDetailsService {
 
 	@Override

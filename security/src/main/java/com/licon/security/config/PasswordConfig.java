@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @author Licon
  * @date 2021/12/2 16:33
  */
-@Configuration
 public class PasswordConfig {
 	@Bean
 	public PasswordEncoder passwordEncoder(){

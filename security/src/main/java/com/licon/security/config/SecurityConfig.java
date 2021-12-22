@@ -1,38 +1,22 @@
 package com.licon.security.config;
 
-import com.licon.security.config.CustomerAuthenticationProvider;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.AccessDecisionManager;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.access.vote.AffirmativeBased;
-import org.springframework.security.access.vote.ConsensusBased;
 import org.springframework.security.access.vote.RoleHierarchyVoter;
-import org.springframework.security.access.vote.UnanimousBased;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.util.Assert;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
 
@@ -42,17 +26,22 @@ import java.util.Collections;
  * @author Licon
  * @date 2021/12/2 15:08
  */
-@EnableWebSecurity
+//@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	public final CustomerAuthenticationProvider customerAuthenticationProvider;
-	public final CustomerUserDetailService customerUserDetailService;
-	public final DataSource dataSource;
+	final CustomerAuthenticationProvider customerAuthenticationProvider;
+	final CustomerUserDetailService customerUserDetailService;
+	final DataSource dataSource;
+	final CustomerMetadataSource customerMetadataSource;
+
+
 	public SecurityConfig(CustomerAuthenticationProvider customerAuthenticationProvider,
-			CustomerUserDetailService customerUserDetailService, DataSource dataSource) {
+			CustomerUserDetailService customerUserDetailService, DataSource dataSource,
+			CustomerMetadataSource customerMetadataSource) {
 		this.customerAuthenticationProvider = customerAuthenticationProvider;
 		this.customerUserDetailService = customerUserDetailService;
 		this.dataSource = dataSource;
+		this.customerMetadataSource = customerMetadataSource;
 	}
 
 	@Override
@@ -128,7 +117,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			@Override
 			public <O extends FilterSecurityInterceptor> O postProcess(O object) {
 				object.setAccessDecisionManager(obtainAccessDecisionManager());
-				//object.setSecurityMetadataSource(metadataSource);
+				object.setSecurityMetadataSource(customerMetadataSource);
 				return object;
 			}
 		};

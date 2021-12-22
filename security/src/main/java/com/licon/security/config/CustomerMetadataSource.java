@@ -5,8 +5,12 @@ import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 
 
+import com.lut.admin.core.config.RepositoryForeignConfig;
 import com.lut.admin.core.sys.repository.ResourceRepository;
+import com.lut.admin.core.sys.repository.impl.ResourceRepositoryImpl;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
@@ -18,7 +22,7 @@ import org.springframework.stereotype.Component;
  * @author Licon
  * @date 2021/12/17 10:27
  */
-@Component
+//@Component
 public class CustomerMetadataSource implements FilterInvocationSecurityMetadataSource {
 	final ResourceRepository resourceRepository;
 
