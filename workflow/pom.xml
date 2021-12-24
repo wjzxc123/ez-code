@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.lut</groupId>
+		<groupId>com.licon</groupId>
 		<artifactId>ez-code</artifactId>
 		<version>0.0.1.L1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>com.lut</groupId>
+	<groupId>com.licon</groupId>
 	<artifactId>workflow</artifactId>
 	<version>0.0.1.L1</version>
 	<name>workflow</name>
@@ -27,7 +27,7 @@
 			<version>${activiti.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.lut</groupId>
+			<groupId>com.licon</groupId>
 			<artifactId>security</artifactId>
 			<version>${security.version}</version>
 			<scope>runtime</scope>

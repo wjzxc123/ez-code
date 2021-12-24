@@ -8,7 +8,7 @@
 		<version>2.6.1</version>
 	</parent>
 
-	<groupId>com.lut</groupId>
+	<groupId>com.licon</groupId>
 	<artifactId>ez-code</artifactId>
 	<version>0.0.1.L1</version>
 	<name>${project.artifactId}</name>
@@ -104,27 +104,10 @@
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>${pagehelper.version}</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<filtering>false</filtering>
-				<directory>${basedir}/src/main/resources</directory>
-				<includes>
-					<include>**/*.yml</include>
-					<include>**/*.properties</include>
-					<include>**/*.xml</include>
-				</includes>
-			</resource>
-			<resource>
-				<filtering>true</filtering>
-				<directory>${basedir}/src/main/java</directory>
-				<includes>
-					<include>**/*.xml</include>
-				</includes>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

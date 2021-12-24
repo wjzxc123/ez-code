@@ -1,17 +1,8 @@
 spring:
   application:
     name: domain
-  datasource:
-    dynamic:
-      hikari:
-        connection-test-query: select 1
-      primary: write
-      strict: false
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
   profiles:
-    active: dev
+    active: dev,common
 
 logging:
   level:
@@ -19,24 +10,5 @@ logging:
       licon:
         domain: debug
   config: classpath:logback-spring.xml
-
-mybatis-plus:
-  global-config:
-    db-config:
-      logic-delete-value: 1
-      logic-not-delete-value: 0
-
-knife4j:
-  enable: true
-
-decorator:
-  datasource:
-    enabled: false
-
-pagehelper:
-  params: pageNum=page;pageSize=pageSize;
-  helper-dialect: mysql
-  auto-dialect: true
-  supportMethodsArguments: true
 
 

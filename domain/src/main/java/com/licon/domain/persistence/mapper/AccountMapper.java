@@ -5,7 +5,7 @@ import java.util.List;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.licon.domain.domian.ceq.QueryAccount;
 import com.licon.domain.persistence.po.AccountDO;
-import com.lut.admin.core.mybatis.ExtensionMapper;
+import com.licon.admin.core.mybatis.ExtensionMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 

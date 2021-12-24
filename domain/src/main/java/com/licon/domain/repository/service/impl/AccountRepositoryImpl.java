@@ -14,9 +14,9 @@ import com.licon.domain.repository.converter.service.AccountBuilder;
 import com.licon.domain.types.AccountId;
 import com.licon.domain.types.AccountNumber;
 import com.licon.domain.types.UserId;
-import com.lut.admin.core.domain.repository.Aggregate;
-import com.lut.admin.core.exception.AttachException;
-import com.lut.admin.core.exception.DetachException;
+import com.licon.admin.core.domain.repository.Aggregate;
+import com.licon.admin.core.exception.AttachException;
+import com.licon.admin.core.exception.DetachException;
 
 import org.springframework.stereotype.Repository;
 

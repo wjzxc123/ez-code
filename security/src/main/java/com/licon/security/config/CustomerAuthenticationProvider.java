@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  * @author Licon
  * @date 2021/12/2 15:03
  */
-@Configuration
+//@Configuration
 public class CustomerAuthenticationProvider implements AuthenticationProvider {
 	final CustomerUserDetailService customerUserDetailService;
 

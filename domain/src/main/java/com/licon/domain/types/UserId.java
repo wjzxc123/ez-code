@@ -1,6 +1,6 @@
 package com.licon.domain.types;
 
-import com.lut.admin.core.domain.repository.Identifier;
+import com.licon.admin.core.domain.repository.Identifier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

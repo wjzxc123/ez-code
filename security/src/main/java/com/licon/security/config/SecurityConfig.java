@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -26,7 +25,6 @@ import java.util.Collections;
  * @author Licon
  * @date 2021/12/2 15:08
  */
-//@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	final CustomerAuthenticationProvider customerAuthenticationProvider;
@@ -127,7 +125,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new AffirmativeBased(Collections.singletonList(new RoleHierarchyVoter(new RoleHierarchyImpl())));
 	}
 
-	@Bean
+
 	public PersistentTokenRepository persistentTokenRepository(){
 		JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
 		jdbcTokenRepository.setDataSource(dataSource);

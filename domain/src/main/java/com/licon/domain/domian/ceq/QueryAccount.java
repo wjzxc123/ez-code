@@ -1,7 +1,7 @@
 package com.licon.domain.domian.ceq;
 
 
-import com.lut.admin.core.standard.QueryPageBase;
+import com.licon.admin.core.standard.QueryPageBase;
 
 /**
  * Describe:

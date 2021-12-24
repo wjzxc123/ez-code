@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.licon.admin.core.sys.mapper.ResourceAuthorityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.licon.admin.core.sys.po.ResourceAuthority">
+        <id column="ID" property="id" />
+        <result column="RESOURCE_ID" property="resourceId" />
+        <result column="AUTHORITY_CODE" property="authorityCode" />
+        <result column="CREATE_BY" property="createBy" />
+        <result column="UPDATE_BY" property="updateBy" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="VERSION" property="version" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, RESOURCE_ID, AUTHORITY_CODE, CREATE_BY, UPDATE_BY, CREATE_TIME, UPDATE_TIME, VERSION
+    </sql>
+
+</mapper>

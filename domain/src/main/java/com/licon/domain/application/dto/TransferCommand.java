@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import com.licon.domain.common.CurrencyValid;
 import com.licon.domain.common.group.TransferGroup;
 import com.licon.domain.common.group.UndoGroup;
-import com.lut.admin.core.standard.CommandBase;
+import com.licon.admin.core.standard.CommandBase;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

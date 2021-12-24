@@ -9,7 +9,7 @@ import com.licon.domain.application.service.AccountService;
 import com.licon.domain.application.service.BankService;
 import com.licon.domain.domian.ceq.QueryAccount;
 import com.licon.domain.domian.entity.Account;
-import com.lut.admin.core.common.ResultData;
+import com.licon.admin.core.common.ResultData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

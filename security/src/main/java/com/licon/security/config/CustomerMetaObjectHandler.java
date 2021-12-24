@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
  * @author Licon
  * @date 2021/12/20 11:14
  */
-@Component
 public class CustomerMetaObjectHandler implements MetaObjectHandler {
 
 

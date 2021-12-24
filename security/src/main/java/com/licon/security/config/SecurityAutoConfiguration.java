@@ -2,12 +2,15 @@ package com.licon.security.config;
 
 import javax.sql.DataSource;
 
-import com.lut.admin.core.sys.repository.ResourceRepository;
+import com.licon.admin.core.sys.repository.AuthorityRepository;
+import com.licon.admin.core.sys.repository.ResourceAuthorityRepository;
+import com.licon.admin.core.sys.repository.ResourceRepository;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -41,7 +44,16 @@ public class SecurityAutoConfiguration {
 	}
 
 	@Bean
-	public CustomerMetadataSource metadataSource(ResourceRepository resourceRepository){
-		return new CustomerMetadataSource(resourceRepository);
+	@ConditionalOnMissingBean
+	public CustomerMetadataSource metadataSource(ResourceRepository resourceRepository,
+			ResourceAuthorityRepository resourceAuthorityRepository,
+			AuthorityRepository authorityRepository){
+		return new CustomerMetadataSource(resourceRepository, resourceAuthorityRepository, authorityRepository);
+	}
+
+	@Bean
+	@Primary
+	public CustomerMetaObjectHandler metaObjectHandler(){
+		return new CustomerMetaObjectHandler();
 	}
 }

@@ -1,6 +1,6 @@
 package com.licon.domain.exception;
 
-import com.lut.admin.core.exception.BusinessException;
+import com.licon.admin.core.exception.BusinessException;
 
 /**
  * Describe:

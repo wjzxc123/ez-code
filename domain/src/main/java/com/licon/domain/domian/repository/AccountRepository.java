@@ -8,7 +8,7 @@ import com.licon.domain.domian.entity.Account;
 import com.licon.domain.types.AccountId;
 import com.licon.domain.types.AccountNumber;
 import com.licon.domain.types.UserId;
-import com.lut.admin.core.domain.repository.Repository;
+import com.licon.admin.core.domain.repository.Repository;
 
 /**
  * Describe:

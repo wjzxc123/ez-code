@@ -1,20 +1,21 @@
 package com.licon.security.config;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 
-import com.lut.admin.core.config.RepositoryForeignConfig;
-import com.lut.admin.core.sys.repository.ResourceRepository;
-import com.lut.admin.core.sys.repository.impl.ResourceRepositoryImpl;
+import com.licon.admin.core.sys.po.Resource;
+import com.licon.admin.core.sys.repository.AuthorityRepository;
+import com.licon.admin.core.sys.repository.ResourceAuthorityRepository;
+import com.licon.admin.core.sys.repository.ResourceRepository;
+import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.context.annotation.Import;
 import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.stereotype.Component;
 
 /**
  * Describe:
@@ -22,19 +23,28 @@ import org.springframework.stereotype.Component;
  * @author Licon
  * @date 2021/12/17 10:27
  */
-//@Component
+@Slf4j
 public class CustomerMetadataSource implements FilterInvocationSecurityMetadataSource {
 	final ResourceRepository resourceRepository;
-
-	public CustomerMetadataSource(ResourceRepository resourceRepository) {
+	final ResourceAuthorityRepository resourceAuthorityRepository;
+	final AuthorityRepository authorityRepository;
+	public CustomerMetadataSource(ResourceRepository resourceRepository, ResourceAuthorityRepository resourceAuthorityRepository, AuthorityRepository authorityRepository) {
 		this.resourceRepository = resourceRepository;
+		this.resourceAuthorityRepository = resourceAuthorityRepository;
+		this.authorityRepository = authorityRepository;
 	}
 
 	@Override
 	public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
 		HttpServletRequest request = ((FilterInvocation) object).getRequest();
+		try {
+			List<Resource> inResourcePath = resourceRepository.findInResourcePath(request.getRequestURI());
+			System.out.println(inResourcePath);
+		}catch (Exception e) {
+			log.error("获取权限失败:{}",e.getMessage());
+		}
 
-		return null;
+		return SecurityConfig.createList();
 	}
 
 	@Override

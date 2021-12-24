@@ -14,7 +14,7 @@ import com.licon.domain.types.AccountNumber;
 import com.licon.domain.types.ExchangeRate;
 import com.licon.domain.types.Money;
 import com.licon.domain.types.UserId;
-import com.lut.admin.core.common.ResultData;
+import com.licon.admin.core.common.ResultData;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

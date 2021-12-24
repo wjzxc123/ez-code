@@ -4,7 +4,7 @@ package com.licon.domain.application.service;
 import javax.validation.Valid;
 
 import com.licon.domain.application.dto.TransferCommand;
-import com.lut.admin.core.common.ResultData;
+import com.licon.admin.core.common.ResultData;
 
 
 /**

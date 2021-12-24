@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.lut.admin.core.config.RepositoryForeignConfig
+com.licon.admin.core.config.RepositoryForeignConfig
