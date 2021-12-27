@@ -2,11 +2,14 @@ package com.licon.security.config;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
 
 import com.licon.admin.core.sys.po.Resource;
+import com.licon.admin.core.sys.po.ResourceAuthority;
 import com.licon.admin.core.sys.repository.AuthorityRepository;
 import com.licon.admin.core.sys.repository.ResourceAuthorityRepository;
 import com.licon.admin.core.sys.repository.ResourceRepository;
@@ -24,11 +27,11 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
  * @date 2021/12/17 10:27
  */
 @Slf4j
-public class CustomerMetadataSource implements FilterInvocationSecurityMetadataSource {
+public class CustomerSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
 	final ResourceRepository resourceRepository;
 	final ResourceAuthorityRepository resourceAuthorityRepository;
 	final AuthorityRepository authorityRepository;
-	public CustomerMetadataSource(ResourceRepository resourceRepository, ResourceAuthorityRepository resourceAuthorityRepository, AuthorityRepository authorityRepository) {
+	public CustomerSecurityMetadataSource(ResourceRepository resourceRepository, ResourceAuthorityRepository resourceAuthorityRepository, AuthorityRepository authorityRepository) {
 		this.resourceRepository = resourceRepository;
 		this.resourceAuthorityRepository = resourceAuthorityRepository;
 		this.authorityRepository = authorityRepository;
@@ -39,11 +42,16 @@ public class CustomerMetadataSource implements FilterInvocationSecurityMetadataS
 		HttpServletRequest request = ((FilterInvocation) object).getRequest();
 		try {
 			List<Resource> inResourcePath = resourceRepository.findInResourcePath(request.getRequestURI());
-			System.out.println(inResourcePath);
+			if (inResourcePath.size()<=0){
+				return SecurityConfig.createList();
+			}
+			Resource resource = inResourcePath.get(0);
+			return SecurityConfig.createList(resourceAuthorityRepository
+					.getAuthorityByResourceId(resource.getResourceId()).stream()
+					.map(ResourceAuthority::getAuthorityCode).distinct().toArray(String[]::new));
 		}catch (Exception e) {
 			log.error("获取权限失败:{}",e.getMessage());
 		}
-
 		return SecurityConfig.createList();
 	}
 

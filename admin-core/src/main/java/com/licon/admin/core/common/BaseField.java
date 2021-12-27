@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Describe:
@@ -19,6 +20,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class BaseField {
     @TableId(type = IdType.AUTO)
     private Long id;

@@ -9,6 +9,7 @@
         <result column="RESOURCE_PATH" property="resourcePath" />
         <result column="RESOURCE_NAME" property="resourceName" />
         <result column="RESOURCE_VERSION" property="resourceVersion" />
+        <result column="ENABLE" property="enable" />
         <result column="CREATE_BY" property="createBy" />
         <result column="UPDATE_BY" property="updateBy" />
         <result column="CREATE_TIME" property="createTime" />
@@ -18,7 +19,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ID, RESOURCE_ID, RESOURCE_PATH, RESOURCE_NAME, RESOURCE_VERSION, CREATE_BY, UPDATE_BY, CREATE_TIME, UPDATE_TIME, VERSION
+        ID, RESOURCE_ID, RESOURCE_PATH, RESOURCE_NAME, RESOURCE_VERSION,ENABLE, CREATE_BY, UPDATE_BY, CREATE_TIME, UPDATE_TIME, VERSION
     </sql>
 
     <select id="findInResourcePath" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -27,5 +28,14 @@
         from sys_resource
         where
             RESOURCE_PATH = #{path}
+    </select>
+
+    <select id="findInResourceId" resultMap="BaseResultMap"  parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_resource
+        where
+        RESOURCE_ID = #{resourceId}
+        and ENABLE = '1'
     </select>
 </mapper>

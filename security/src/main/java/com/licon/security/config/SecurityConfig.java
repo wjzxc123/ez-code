@@ -1,10 +1,7 @@
 package com.licon.security.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.AccessDecisionManager;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.access.vote.AffirmativeBased;
-import org.springframework.security.access.vote.RoleHierarchyVoter;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,9 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-
 import javax.sql.DataSource;
-
 import java.io.PrintWriter;
 import java.util.Collections;
 
@@ -30,16 +25,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	final CustomerAuthenticationProvider customerAuthenticationProvider;
 	final CustomerUserDetailService customerUserDetailService;
 	final DataSource dataSource;
-	final CustomerMetadataSource customerMetadataSource;
-
+	final CustomerSecurityMetadataSource customerMetadataSource;
+	final UrlVoter urlVoter;
 
 	public SecurityConfig(CustomerAuthenticationProvider customerAuthenticationProvider,
 			CustomerUserDetailService customerUserDetailService, DataSource dataSource,
-			CustomerMetadataSource customerMetadataSource) {
+			CustomerSecurityMetadataSource customerMetadataSource, UrlVoter urlVoter) {
 		this.customerAuthenticationProvider = customerAuthenticationProvider;
 		this.customerUserDetailService = customerUserDetailService;
 		this.dataSource = dataSource;
 		this.customerMetadataSource = customerMetadataSource;
+		this.urlVoter = urlVoter;
 	}
 
 	@Override
@@ -122,7 +118,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	AccessDecisionManager obtainAccessDecisionManager(){
-		return new AffirmativeBased(Collections.singletonList(new RoleHierarchyVoter(new RoleHierarchyImpl())));
+		return new AffirmativeBased(Collections.singletonList(urlVoter));
 	}
 
 

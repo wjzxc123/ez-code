@@ -34,11 +34,20 @@ public class ResourceRepositoryImpl implements ResourceRepository {
 
 	@Override
 	public Resource findInResourceId(String resourceId) throws Exception {
-		return null;
+		return resourceMapper.findInResourceId(resourceId);
 	}
 
 	@Override
 	public boolean save(Resource resource) throws Exception {
-		return false;
+		int result = 0;
+		if (resource.getId()== null){
+			result = resourceMapper.insert(resource);
+		}else {
+			result = resourceMapper.updateById(resource);
+		}
+		if (result == 0){
+			throw new Exception("保存失败");
+		}
+		return true;
 	}
 }

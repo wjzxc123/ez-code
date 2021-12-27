@@ -22,4 +22,14 @@ public interface ResourceMapper extends ExtensionMapper<Resource> {
 	 * @date 2021/12/23 16:53
 	 */
 	List<Resource> findInResourcePath(@Param("path") String path);
+
+	/***
+	 * 根据 resourceId 查询 resource
+	 * @param resourceId
+	 * @return {@link Resource}
+	 * @throws
+	 * @author Licon
+	 * @date 2021/12/27 14:50
+	 */
+	Resource findInResourceId(@Param("resourceId") String resourceId);
 }

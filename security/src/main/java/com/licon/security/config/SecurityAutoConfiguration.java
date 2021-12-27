@@ -27,8 +27,8 @@ public class SecurityAutoConfiguration {
 	@ConditionalOnMissingBean
 	public SecurityConfig securityConfig(CustomerAuthenticationProvider customerAuthenticationProvider,
 			CustomerUserDetailService customerUserDetailService, DataSource dataSource,
-			CustomerMetadataSource customerMetadataSource){
-		return new SecurityConfig(customerAuthenticationProvider,customerUserDetailService,dataSource,customerMetadataSource);
+			CustomerSecurityMetadataSource customerMetadataSource,UrlVoter urlVoter){
+		return new SecurityConfig(customerAuthenticationProvider,customerUserDetailService,dataSource,customerMetadataSource, urlVoter);
 	}
 
 	@Bean
@@ -45,15 +45,21 @@ public class SecurityAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean
-	public CustomerMetadataSource metadataSource(ResourceRepository resourceRepository,
+	public CustomerSecurityMetadataSource metadataSource(ResourceRepository resourceRepository,
 			ResourceAuthorityRepository resourceAuthorityRepository,
 			AuthorityRepository authorityRepository){
-		return new CustomerMetadataSource(resourceRepository, resourceAuthorityRepository, authorityRepository);
+		return new CustomerSecurityMetadataSource(resourceRepository, resourceAuthorityRepository, authorityRepository);
 	}
 
 	@Bean
 	@Primary
 	public CustomerMetaObjectHandler metaObjectHandler(){
 		return new CustomerMetaObjectHandler();
+	}
+
+	@Bean
+	@ConditionalOnMissingBean
+	public UrlVoter urlVoter(){
+		return new UrlVoter();
 	}
 }

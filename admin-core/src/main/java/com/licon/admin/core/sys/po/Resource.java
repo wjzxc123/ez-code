@@ -2,7 +2,9 @@ package com.licon.admin.core.sys.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.licon.admin.core.common.BaseField;
+import com.licon.admin.core.mybatis.enums.EnableEnum;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * Describe:
@@ -12,6 +14,7 @@ import lombok.Data;
  */
 @Data
 @TableName("sys_resource")
+@ToString(callSuper = true)
 public class Resource extends BaseField{
 
 	private String resourceId;
@@ -21,4 +24,6 @@ public class Resource extends BaseField{
 	private String resourceName;
 
 	private String resourceVersion;
+
+	private EnableEnum enable;
 }
