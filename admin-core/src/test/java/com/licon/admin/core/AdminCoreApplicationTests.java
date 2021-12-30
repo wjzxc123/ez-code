@@ -4,7 +4,12 @@ import java.util.UUID;
 
 import com.licon.admin.core.mybatis.enums.EnableEnum;
 import com.licon.admin.core.sys.po.Resource;
+import com.licon.admin.core.sys.po.Role;
+import com.licon.admin.core.sys.po.User;
 import com.licon.admin.core.sys.repository.ResourceRepository;
+import com.licon.admin.core.sys.repository.RoleRepository;
+import com.licon.admin.core.sys.repository.UserRepository;
+import lombok.experimental.Accessors;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +20,13 @@ class AdminCoreApplicationTests {
 
 	@Autowired
 	ResourceRepository resourceRepository;
+
+	@Autowired
+	UserRepository userRepository;
+
+	@Autowired
+	RoleRepository roleRepository;
+
 	@Test
 	void contextLoads() {
 	}
@@ -47,5 +59,14 @@ class AdminCoreApplicationTests {
 		resource = resourceRepository.findInResourceId(resourceId);
 
 		System.out.println(resource);
+	}
+
+	@Test
+	public void testUserFind()throws Exception{
+		User user = userRepository.queryUserByAccount("wjzxc123");
+		System.out.println(user);
+
+		Role role = roleRepository.queryRoleByRoleCode("A");
+		System.out.println(role);
 	}
 }

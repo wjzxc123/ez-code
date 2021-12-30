@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.licon.admin.core.sys.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.licon.admin.core.sys.po.User">
+        <id column="ID" property="id" />
+        <result column="USER_ID" property="userId" />
+        <result column="ACCOUNT" property="account" />
+        <result column="PASSWORD" property="password" />
+        <result column="NAME" property="name" />
+        <result column="EMAIL" property="email" />
+        <result column="PHONE" property="phone" />
+        <result column="GENDER" property="gender" />
+        <result column="AGE" property="age" />
+        <result column="DISABLE" property="disable" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="CREATE_BY" property="createBy" />
+        <result column="UPDATE_BY" property="updateBy" />
+        <result column="VERSION" property="version" />
+    </resultMap>
+
+    <resultMap id="BaseMap_ContainsRole" type="com.licon.admin.core.sys.po.User">
+        <id column="ID" property="id" />
+        <result column="USER_ID" property="userId" />
+        <result column="ACCOUNT" property="account" />
+        <result column="PASSWORD" property="password" />
+        <result column="NAME" property="name" />
+        <result column="EMAIL" property="email" />
+        <result column="PHONE" property="phone" />
+        <result column="GENDER" property="gender" />
+        <result column="AGE" property="age" />
+        <result column="DISABLE" property="disable" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="CREATE_BY" property="createBy" />
+        <result column="UPDATE_BY" property="updateBy" />
+        <result column="VERSION" property="version" />
+        <collection property="roleList" ofType="com.licon.admin.core.sys.po.Role">
+            <id column="ID" property="id" />
+            <result column="ROLE_CODE" property="roleCode" />
+            <result column="ROLE_NAME" property="roleName" />
+            <result column="P_CODE" property="pCode" />
+            <result column="ENABLE" property="enable" />
+            <result column="CREATE_BY" property="createBy" />
+            <result column="UPDATE_BY" property="updateBy" />
+            <result column="CREATE_TIME" property="createTime" />
+            <result column="UPDATE_TIME" property="updateTime" />
+            <result column="VERSION" property="version" />
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, USER_ID, `ACCOUNT`, `PASSWORD`, `NAME`, EMAIL, PHONE, GENDER, AGE, `DISABLE`, CREATE_TIME, UPDATE_TIME, CREATE_BY, UPDATE_BY, VERSION
+    </sql>
+
+    <select id="findUserInAccount" resultMap="BaseMap_ContainsRole">
+        select
+            su.*,
+            sr.*
+        from sys_user su
+        left join sys_user_role sur on su.USER_ID = sur.USER_ID
+        left join sys_role sr on sr.ROLE_CODE = sur.ROLE_CODE
+        where
+            su.ACCOUNT = #{account}
+    </select>
+</mapper>

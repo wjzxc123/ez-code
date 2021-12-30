@@ -28,10 +28,11 @@ public class UrlVoter implements AccessDecisionVoter<Object> {
 			return ACCESS_DENIED;
 		}
 
-		int result = ACCESS_DENIED;
+		int result = ACCESS_ABSTAIN;
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		for (ConfigAttribute attribute : attributes) {
 			if (this.supports(attribute)){
+				result = ACCESS_DENIED;
 				for (GrantedAuthority authority : authorities) {
 					if (attribute.getAttribute().equals(authority.getAuthority())) {
 						return ACCESS_GRANTED;

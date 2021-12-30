@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.licon.admin.core.sys.mapper.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.licon.admin.core.sys.po.Role">
+        <id column="ID" property="id" />
+        <result column="ROLE_CODE" property="roleCode" />
+        <result column="ROLE_NAME" property="roleName" />
+        <result column="P_CODE" property="pCode" />
+        <result column="ENABLE" property="enable" />
+        <result column="CREATE_BY" property="createBy" />
+        <result column="UPDATE_BY" property="updateBy" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="VERSION" property="version" />
+    </resultMap>
+
+    <resultMap id="BaseMap_ContainsAuthority" type="com.licon.admin.core.sys.po.Role">
+        <id column="ID" property="id" />
+        <result column="ROLE_CODE" property="roleCode" />
+        <result column="ROLE_NAME" property="roleName" />
+        <result column="P_CODE" property="pCode" />
+        <result column="ENABLE" property="enable" />
+        <result column="CREATE_BY" property="createBy" />
+        <result column="UPDATE_BY" property="updateBy" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="VERSION" property="version" />
+        <collection property="authorityList" ofType="com.licon.admin.core.sys.po.Authority">
+            <id column="ID" property="id" />
+            <result column="AUTHORITY_CODE" property="authorityCode" />
+            <result column="AUTHORITY_NAME" property="authorityName" />
+            <result column="CREATE_BY" property="createBy" />
+            <result column="UPDATE_BY" property="updateBy" />
+            <result column="CREATE_TIME" property="createTime" />
+            <result column="UPDATE_TIME" property="updateTime" />
+            <result column="VERSION" property="version" />
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, ROLE_CODE, ROLE_NAME, P_CODE, `ENABLE`, CREATE_BY, UPDATE_BY, CREATE_TIME, UPDATE_TIME, VERSION
+    </sql>
+
+    <select id="findRoleInRoleCode" resultMap="BaseMap_ContainsAuthority">
+        select
+            sr.*,
+            sa.*
+        from sys_role sr
+        left join sys_role_authority sra on sr.ROLE_CODE = sra.ROLE_CODE
+        left join sys_authority sa on sra.AUTHORITY_CODE = sa.AUTHORITY_CODE
+        where
+            sr.ROLE_CODE = #{roleCode}
+    </select>
+</mapper>

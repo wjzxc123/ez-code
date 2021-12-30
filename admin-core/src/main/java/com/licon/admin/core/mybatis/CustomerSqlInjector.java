@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
  * @author Licon
  * @date 2021/12/20 14:54
  */
-@Component
 public class CustomerSqlInjector extends DefaultSqlInjector {
 	@Override
 	public List<AbstractMethod> getMethodList(Class<?> mapperClass, TableInfo tableInfo) {

@@ -12,7 +12,14 @@ import lombok.Getter;
  */
 @Getter
 public enum EnableEnum {
-	ON(1,"激活"),OFF(0,"失效");
+	/**
+	 * 激活
+	 */
+	ON(1,"激活"),
+	/**
+	 * 失效
+	 */
+	OFF(0,"失效");
 
 	/**
 	 * 编码

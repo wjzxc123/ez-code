@@ -7,7 +7,4 @@ spring:
 logging:
   level:
     com:
-      licon:
-        security: debug
-        admin:
-          core: debug
+      licon: debug

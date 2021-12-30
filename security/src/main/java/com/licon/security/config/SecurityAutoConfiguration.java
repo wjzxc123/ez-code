@@ -5,6 +5,8 @@ import javax.sql.DataSource;
 import com.licon.admin.core.sys.repository.AuthorityRepository;
 import com.licon.admin.core.sys.repository.ResourceAuthorityRepository;
 import com.licon.admin.core.sys.repository.ResourceRepository;
+import com.licon.admin.core.sys.repository.RoleRepository;
+import com.licon.admin.core.sys.repository.UserRepository;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -39,8 +41,8 @@ public class SecurityAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean
-	public CustomerUserDetailService userDetailService(){
-		return new CustomerUserDetailService();
+	public CustomerUserDetailService userDetailService(UserRepository userRepository, RoleRepository roleRepository){
+		return new CustomerUserDetailService(userRepository,roleRepository);
 	}
 
 	@Bean

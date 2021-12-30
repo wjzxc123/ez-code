@@ -45,7 +45,7 @@ public class GenerateTest {
 							.build(); // 设置mapperXml生成路径
 				})
 				.strategyConfig(builder -> {
-					builder.addInclude("sys_resource_authority")
+					builder.addInclude("sys_user_role")
 							.entityBuilder()
 							.versionColumnName("version")
 							.versionPropertyName("version")

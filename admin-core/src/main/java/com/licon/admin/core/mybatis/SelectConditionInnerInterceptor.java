@@ -25,7 +25,7 @@ public class SelectConditionInnerInterceptor implements InnerInterceptor {
 
 	private static final String SEPARATOR = ".";
 
-	private static final String SQLID = "selectByCondition";
+	private static final String SQL_ID = "selectByCondition";
 
 	@Override
 	public void beforeQuery(Executor executor, MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) throws SQLException {
@@ -33,7 +33,7 @@ public class SelectConditionInnerInterceptor implements InnerInterceptor {
 		if (ms == null){
 			return;
 		}
-		if (!SQLID.equalsIgnoreCase(ms.getId().substring(ms.getId().lastIndexOf(SEPARATOR)+1))){
+		if (!SQL_ID.equalsIgnoreCase(ms.getId().substring(ms.getId().lastIndexOf(SEPARATOR)+1))){
 			return;
 		}
 

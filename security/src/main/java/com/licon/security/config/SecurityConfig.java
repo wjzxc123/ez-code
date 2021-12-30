@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+
 	}
 
 	@Override
@@ -55,13 +56,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("uname")
 				.passwordParameter("pwd")
 				.loginProcessingUrl("/login")
-				.successForwardUrl("/main")
-				/*.successHandler((request, response, authentication) -> {
+				.successHandler((request, response, authentication) -> {
 					System.out.println(authentication.getPrincipal());
 					System.out.println(authentication.getAuthorities());
 					response.sendRedirect("/main.html");
-				})*/
-				//.failureForwardUrl("/toError")
+				})
 				.failureHandler((request, response, exception) -> {
 					System.out.println(exception.getMessage());
 					response.sendRedirect("/error.html");
@@ -83,15 +82,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.tokenValiditySeconds(60);
 
 		http.authorizeRequests().antMatchers("/api/**","/login.html","/error.html")
-                //.permitAll()
-                .access("permitAll()")
-		        .anyRequest().authenticated()
-				.withObjectPostProcessor(filterSecurityInterceptorObjectPostProcessor());
-                //.anyRequest().hasIpAddress("127.0.0.1");IP限制
-				//.anyRequest().hasAnyAuthority("ROLE_ADMINS");
-                //.anyRequest().access("hasAnyAuthority('ROLE_ADMIN')");
-				//自定义授权 不能设置投票策略
-				//.anyRequest().access("@customerURLSecurity.hasPermission(request,authentication)");
+                .permitAll()
+				.anyRequest()
+				.authenticated()
+				.withObjectPostProcessor(filterSecurityInterceptorObjectPostProcessor())
+				.and()
+				.csrf()
+				.disable();
+
 
 		http.logout()
 				.logoutUrl("/logout")
@@ -103,7 +101,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					writer.close();
 				});
 
-		http.csrf().disable();
 	}
 
 	ObjectPostProcessor<FilterSecurityInterceptor> filterSecurityInterceptorObjectPostProcessor(){
@@ -125,7 +122,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public PersistentTokenRepository persistentTokenRepository(){
 		JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
 		jdbcTokenRepository.setDataSource(dataSource);
-		//jdbcTokenRepository.setCreateTableOnStartup(true);
+		jdbcTokenRepository.setCreateTableOnStartup(false);
 		return jdbcTokenRepository;
 		/*return new InMemoryTokenRepositoryImpl();*/
 	}

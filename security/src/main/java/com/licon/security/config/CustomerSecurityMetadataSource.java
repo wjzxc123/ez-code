@@ -41,9 +41,12 @@ public class CustomerSecurityMetadataSource implements FilterInvocationSecurityM
 	public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
 		HttpServletRequest request = ((FilterInvocation) object).getRequest();
 		try {
+			if ("/login.html".equalsIgnoreCase(request.getRequestURI())){
+				return SecurityConfig.createList();
+			}
 			List<Resource> inResourcePath = resourceRepository.findInResourcePath(request.getRequestURI());
 			if (inResourcePath.size()<=0){
-				return SecurityConfig.createList();
+				return SecurityConfig.createList("ROLE_LOGIN");
 			}
 			Resource resource = inResourcePath.get(0);
 			return SecurityConfig.createList(resourceAuthorityRepository
@@ -52,7 +55,7 @@ public class CustomerSecurityMetadataSource implements FilterInvocationSecurityM
 		}catch (Exception e) {
 			log.error("获取权限失败:{}",e.getMessage());
 		}
-		return SecurityConfig.createList();
+		return SecurityConfig.createList("ROLE_LOGIN");
 	}
 
 	@Override
